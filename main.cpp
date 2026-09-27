@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <sstream>
 using namespace std;
 
 int main()
@@ -14,12 +15,12 @@ int main()
         float gpa = 0;
     };
 
-    string file = "";
+    string file = "students.txt";
     std::vector<Student> studentInfo;
     std::vector<string> individualInfo;
 
-    cout << "What is the name of the file? ";
-    cin >> file;
+    // cout << "What is the name of the file? ";
+    // cin >> file;
     cout << file << std::endl;
 
     std::ifstream inputFile(file);
@@ -43,8 +44,26 @@ int main()
         }
     }
 
-    for (string item : individualInfo)
+    std::vector<size_t> equalPos;
+    std::vector<size_t> spacePos;
+
+    for (std::string item : individualInfo)
     {
-        std::cout << item << std::endl;
+        for (size_t i = 0; i < item.length(); i++)
+
+            if (item[i] == '=')
+            {
+                equalPos.push_back(i + 1);
+            }
+            else if (item[i] == ' ')
+            {
+                spacePos.push_back(i);
+            }
     }
+
+    int i = 0;
+    for (std::string item : individualInfo)
+    {
+        std::stringstream ss(item);
+        }
 }
